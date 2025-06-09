@@ -1,0 +1,2 @@
+C:/Users/Dell/Desktop/mathani ver/Mathani_frontend-main/android/app/.cxx/RelWithDebInfo/5x411548/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/Dell/Desktop/mathani ver/Mathani_frontend-main/android/app/.cxx/RelWithDebInfo/5x411548/arm64-v8a/CMakeFiles/rebuild_cache.dir

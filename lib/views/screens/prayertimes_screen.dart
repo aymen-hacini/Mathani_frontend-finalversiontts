@@ -14,7 +14,7 @@ import 'package:dio/dio.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wird/main.dart';
 import 'package:workmanager/workmanager.dart';
 
@@ -157,8 +157,9 @@ Future<void> schedulePrayerNotifications(
   }
 }
 
-
 class PrayerTimesScreen extends StatefulWidget {
+  const PrayerTimesScreen({super.key});
+
   @override
   _PrayerTimesScreenState createState() => _PrayerTimesScreenState();
 }
@@ -185,14 +186,14 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
     checkInternetConnection(context);
     loadSavedNotifications();
     fetchPrayerTimes();
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       setState(() {
         isLoadingo = false;
       });
     });
 
     // ...
-    _timer = Timer.periodic(Duration(days: 1), (timer) {
+    _timer = Timer.periodic(const Duration(days: 1), (timer) {
       fetchPrayerTimes();
     });
   }
@@ -213,12 +214,12 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
               height: 200,
               fit: BoxFit.contain,
             ),
-            title: Text(
+            title: const Text(
               'اتصال الإنترنت مفقود',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            content: Text(
+            content: const Text(
               'لا يوجد اتصال بالإنترنت. يرجى التحقق من اتصالك.',
               style: TextStyle(fontSize: 18),
               textAlign: TextAlign.center,
@@ -258,7 +259,7 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
                             );
                             Navigator.pop(dialogContext);
                           },
-                          child: Text.rich(
+                          child: const Text.rich(
                             TextSpan(
                               children: [
                                 TextSpan(
@@ -319,7 +320,7 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
   //
   //
   Future<void> _refreshData() async {
-    await Future.delayed(Duration(seconds: 2)); // محاكاة تحميل البيانات
+    await Future.delayed(const Duration(seconds: 2)); // محاكاة تحميل البيانات
     setState(() {
       loadSavedNotifications();
       fetchPrayerTimes();
@@ -399,7 +400,7 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
         });
 
         updateNextPrayer();
-        _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+        _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
           updateNextPrayer();
         });
       } else {
@@ -430,7 +431,7 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
       });
 
       updateNextPrayer();
-      _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
         updateNextPrayer();
       });
     } else {
@@ -468,7 +469,8 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
 
     // إذا لم يتم العثور على صلاة قادمة في اليوم، يتم تعيين الفجر لليوم التالي
     if (nextPrayerTime == null) {
-      nextPrayerTime = parseTime(prayerTimes['Fajr']!).add(Duration(days: 1));
+      nextPrayerTime =
+          parseTime(prayerTimes['Fajr']!).add(const Duration(days: 1));
       nextPrayerName = "الفجر";
     }
 
@@ -534,8 +536,8 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text("أوقات الصلاة"),
-        titleTextStyle: TextStyle(
+        title: const Text("أوقات الصلاة"),
+        titleTextStyle: const TextStyle(
           color: Colors.black,
           fontSize: 30,
           fontWeight: FontWeight.bold,
@@ -546,7 +548,7 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
       body: isLoading
           ? Center(
               child: AnimatedSwitcher(
-                duration: Duration(milliseconds: 200), // مدة الانتقال
+                duration: const Duration(milliseconds: 200), // مدة الانتقال
                 transitionBuilder: (
                   Widget child,
                   Animation<double> animation,
@@ -554,7 +556,7 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
                   return FadeTransition(opacity: animation, child: child);
                 },
                 child: isLoadingo
-                    ? SizedBox(
+                    ? const SizedBox(
                         key: ValueKey(1), // مفتاح فريد للعنصر الأول
                         width: 100,
                         height: 100,
@@ -565,8 +567,8 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
                       )
                     : Icon(
                         Icons.check_circle,
-                        key: ValueKey(2), // مفتاح فريد للعنصر الثاني
-                        size: 80.w,
+                        key: const ValueKey(2), // مفتاح فريد للعنصر الثاني
+                        size: 80,
                         color: Colors.green.shade800,
                       ),
               ),
@@ -577,19 +579,19 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
                 builder: (context, constraints) {
                   return SingleChildScrollView(
                     physics:
-                        AlwaysScrollableScrollPhysics(), // يسمح بالتحديث بدون تمرير فعلي
+                        const AlwaysScrollableScrollPhysics(), // يسمح بالتحديث بدون تمرير فعلي
                     child: ConstrainedBox(
                       constraints: BoxConstraints(
                         minHeight: constraints.maxHeight,
                       ),
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 30.w),
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(
-                              "image/photo.jpg",
+                              "assets/icons/jpg/makkah.jpg",
                             ), // ضع صورة الخلفية هنا
                             fit: BoxFit
                                 .cover, // لضبط حجم الصورة لتغطية الشاشة بالكامل
@@ -603,9 +605,9 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
                             ),
                             Center(
                               child: Container(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 16.w,
-                                  vertical: 6.h,
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                  vertical: 6,
                                 ),
                                 decoration: BoxDecoration(
                                   color: const Color.fromARGB(
@@ -614,12 +616,12 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
                                     248,
                                     217,
                                   ).withOpacity(0.2),
-                                  borderRadius: BorderRadius.circular(20.r),
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Text(
                                   "التاريخ الهجري: $hijriDate2 $hijriDate3 $hijriDate4",
-                                  style: TextStyle(
-                                    fontSize: 16.sp,
+                                  style: const TextStyle(
+                                    fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,
                                   ),
@@ -629,9 +631,9 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
                             if (!isLoading)
                               Center(
                                 child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 16.w,
-                                    vertical: 3.h,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                    vertical: 3,
                                   ),
                                   decoration: BoxDecoration(
                                     color: const Color.fromARGB(
@@ -640,13 +642,13 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
                                       84,
                                       205,
                                     ).withOpacity(0.2),
-                                    borderRadius: BorderRadius.circular(20.r),
+                                    borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: Text.rich(
                                     TextSpan(
                                       text: "الصلاة القادمة: ",
-                                      style: TextStyle(
-                                        fontSize: 16.sp,
+                                      style: const TextStyle(
+                                        fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black, // لون النص الأساسي
                                       ),
@@ -654,8 +656,8 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
                                         TextSpan(
                                           text:
                                               nextPrayer, // المتغير الذي نريد تلوينه
-                                          style: TextStyle(
-                                            fontSize: 25.sp,
+                                          style: const TextStyle(
+                                            fontSize: 25,
                                             color: Color.fromARGB(
                                               255,
                                               200,
@@ -672,8 +674,8 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
                             Center(
                               child: Text(
                                 "بعد $timeRemaining",
-                                style: TextStyle(
-                                  fontSize: 25.sp,
+                                style: const TextStyle(
+                                  fontSize: 25,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
                                 ),
@@ -682,27 +684,27 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
                             prayerItem(
                               "الفجر",
                               prayerTimes['Fajr'],
-                              FaIcon(
+                              const FaIcon(
                                 FontAwesomeIcons.moon,
-                                size: 24.sp,
+                                size: 24,
                                 color: Colors.blueGrey,
                               ),
                             ),
                             prayerItem(
                               "الشروق",
                               prayerTimes['Sunrise'],
-                              FaIcon(
+                              const FaIcon(
                                 FontAwesomeIcons.solidSun,
-                                size: 24.sp,
+                                size: 24,
                                 color: Colors.orangeAccent,
                               ),
                             ),
                             prayerItem(
                               "الظهر",
                               prayerTimes['Dhuhr'],
-                              FaIcon(
+                              const FaIcon(
                                 FontAwesomeIcons.sun,
-                                size: 24.sp,
+                                size: 24,
                                 color: Colors.yellow,
                               ),
                             ),
@@ -711,26 +713,26 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
                               prayerTimes['Asr'],
                               FaIcon(
                                 FontAwesomeIcons.cloudSun,
-                                size: 24.sp,
+                                size: 24,
                                 color: Colors.purple[200] ?? Colors.orange,
                               ),
                             ),
                             prayerItem(
                               "المغرب",
                               prayerTimes['Maghrib'],
-                              FaIcon(
+                              const FaIcon(
                                 FontAwesomeIcons.solidSun,
-                                size: 24.sp,
+                                size: 24,
                                 color: Colors.orange,
                               ),
                             ),
                             prayerItem(
                               "العشاء",
                               prayerTimes['Isha'],
-                              FaIcon(
+                              const FaIcon(
                                 FontAwesomeIcons.solidMoon,
-                                size: 24.sp,
-                                color: const Color.fromARGB(255, 0, 32, 87),
+                                size: 24,
+                                color: Color.fromARGB(255, 0, 32, 87),
                               ),
                             ),
                           ],
@@ -748,21 +750,21 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
     bool isActive = activeNotifications.contains(name);
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30.r), // الشكل الدائري
+        borderRadius: BorderRadius.circular(30), // الشكل الدائري
       ),
       elevation: 5,
       color: Colors.grey.withOpacity(0.3),
-      margin: EdgeInsets.symmetric(vertical: 5.h),
+      margin: const EdgeInsets.symmetric(vertical: 5),
       child: Container(
-        height: 55.h,
+        height: 55,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30.r),
-          boxShadow: [
+          borderRadius: BorderRadius.circular(30),
+          boxShadow: const [
             BoxShadow(
-              color: const Color.fromARGB(202, 255, 255, 255),
-              blurRadius: 12.w,
-              spreadRadius: 3.w,
-              offset: Offset(0, 5.h),
+              color: Color.fromARGB(202, 255, 255, 255),
+              blurRadius: 12,
+              spreadRadius: 3,
+              offset: Offset(0, 5),
             ),
           ],
         ),
@@ -791,11 +793,11 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
                     color: isActive ? Colors.amber : Colors.grey,
                   ),
                 ),
-                SizedBox(width: 11.w),
+                const SizedBox(width: 11),
                 Text(
                   time ?? "غير متوفر",
-                  style: TextStyle(
-                    fontSize: 20.sp,
+                  style: const TextStyle(
+                    fontSize: 20,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
@@ -807,15 +809,15 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
               children: [
                 Text(
                   name,
-                  style: TextStyle(
-                    fontSize: 20.sp,
+                  style: const TextStyle(
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: const Color.fromARGB(255, 0, 0, 0),
+                    color: Color.fromARGB(255, 0, 0, 0),
                   ),
                 ),
-                SizedBox(width: 20.w),
+                const SizedBox(width: 20),
                 icon,
-                SizedBox(width: 11.w),
+                const SizedBox(width: 11),
               ],
             ),
           ),

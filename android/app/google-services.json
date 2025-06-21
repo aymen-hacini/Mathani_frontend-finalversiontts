@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "285272898408",
+    "project_id": "mathaniwirdtest",
+    "storage_bucket": "mathaniwirdtest.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:285272898408:android:ab28c5689718636f70b4dd",
+        "android_client_info": {
+          "package_name": "com.example.wird"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "285272898408-fvo4ll7796mmams8sh807vg1dhepae27.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wird",
+            "certificate_hash": "dde6bbcf32ac27f46b6023c4a5c49316b2c31149"
+          }
+        },
+        {
+          "client_id": "285272898408-p5gt4eqqk6kr6hf9gmv023s0u5gpog14.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvaPy7pDTdRmqp3FrI1P9qipC28_rWbDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "285272898408-p5gt4eqqk6kr6hf9gmv023s0u5gpog14.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

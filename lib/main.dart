@@ -1,8 +1,10 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
+import 'package:wird/firebase_options.dart';
 import 'package:wird/routes.dart';
 import 'package:workmanager/workmanager.dart';
 
@@ -121,6 +123,8 @@ void main() async {
     onDidReceiveBackgroundNotificationResponse:
         onDidReceiveBackgroundNotificationResponse,
   );
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(const MyApp());
 }
 

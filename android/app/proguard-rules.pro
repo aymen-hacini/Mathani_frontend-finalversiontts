@@ -13,6 +13,12 @@
 # === audioplayers ===
 -keep class xyz.luan.audioplayers.** { *; }
 
+# GooglePlay Services
+-keep class com.google.android.gms.** { *; }
+-dontwarn com.google.android.gms.**
+-keep class com.google.common.** { *; }
+-dontwarn com.google.common.**
+
 # === dio (يعتمد على OkHttp) ===
 -dontwarn okhttp3.**
 -keep class okhttp3.** { *; }

@@ -5,6 +5,7 @@ import 'package:wird/views/screens/learn_screen.dart';
 import 'package:wird/views/screens/memorize_screen.dart';
 import 'package:wird/views/screens/play_screen.dart';
 import 'package:wird/views/screens/prayertimes_screen.dart';
+import 'package:wird/views/screens/pricing.dart';
 import 'package:wird/views/screens/qibla_screen.dart';
 import 'package:wird/views/screens/quran_screen.dart';
 import 'package:wird/views/screens/surah_screen.dart';
@@ -21,4 +22,5 @@ List<GetPage> pages = [
   GetPage(name: "/tafssir", page: () => const TafssirScreen()),
   GetPage(name: "/play", page: () => const PlayScreen()),
   GetPage(name: "/learn", page: () => const SurahHomePage()),
+  GetPage(name: "/pricing", page: () => const Pricing()),
 ];

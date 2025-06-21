@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wird/controllers/memorizescreen_controller.dart';
 import 'package:wird/controllers/quranscreen_controller.dart';
+import 'package:wird/views/screens/nawawaiya.dart';
 import 'package:wird/views/widgets/quran/surahnametile.dart';
 
 QuranscreenController quranController = Get.find();
@@ -153,8 +154,42 @@ List<Widget> memorizeTabViews = [
             },
           );
   }),
-  const Text("duaa"),
-  const Text("Hadith")
+  Surahnametile(
+      surahname: "دعاء ختم القرءان",
+      surahNo: 1,
+      ontap: () {
+        Get.to(() => Scaffold(
+              backgroundColor: Colors.black,
+              appBar: AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                iconTheme: const IconThemeData(color: Colors.white),
+              ),
+              body: Center(
+                child: InteractiveViewer(
+                  panEnabled: true,
+                  minScale: 0.5,
+                  maxScale: 4,
+                  child: Image.asset("assets/icons/jpg/khatm.jpg"),
+                ),
+              ),
+            ));
+      },
+      engsurahname: "",
+      engsurahTranslation: ""),
+  Surahnametile(
+      surahname: "الأربعين النووية",
+      surahNo: 1,
+      ontap: () {
+       Navigator.push(
+      Get.context!,
+      MaterialPageRoute(
+        builder: (context) => const Nawawiya(),
+      ),
+    );
+      },
+      engsurahname: "",
+      engsurahTranslation: ""),
 ];
 
 List<Widget> duaatabViews = List.generate(
